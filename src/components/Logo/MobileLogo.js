@@ -4,7 +4,7 @@ import React from 'react';
 const MobileLogo = () => (
   <div>
     <h1 className="global-site-title">
-      <img src="images/es-logo.svg" alt="logo" className="logo-mobile-sgv" />
+      <img src="/images/es-logo.svg" alt="logo" className="logo-mobile-sgv" />
       <span style={ {
         display: "inline-block",
         textIndent: "-9999px",
