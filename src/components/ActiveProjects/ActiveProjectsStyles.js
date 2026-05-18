@@ -90,6 +90,7 @@ export const ProjectImageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  border: 1px solid #e0e0e0;
   
   @media ${(props) => props.theme.breakpoints.sm} {
     height: 220px;
@@ -439,4 +440,41 @@ export const PageInfo = styled.p`
   font-size: 1.2rem;
   margin-top: 0.25rem;
   padding-bottom: 1rem;
+`;
+
+export const FilterBar = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+`;
+
+export const FilterButton = styled.button`
+  padding: 0.55rem 1.4rem;
+  border-radius: 20px;
+  border: 2px solid ${props => props.active ? '#bf4956' : '#e0e0e0'};
+  background: ${props => props.active ? '#bf4956' : '#fff'};
+  color: ${props => props.active ? '#fff' : '#555'};
+  font-size: 1.1rem;
+  font-weight: ${props => props.active ? '700' : '500'};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+
+  &:hover {
+    border-color: #bf4956;
+    color: ${props => props.active ? '#fff' : '#bf4956'};
+    background: ${props => props.active ? '#bf4956' : 'rgba(191, 73, 86, 0.05)'};
+  }
+`;
+
+export const EmptyState = styled.div`
+  text-align: center;
+  padding: 5rem 2rem;
+  color: #8d8f91;
+  font-size: 1.4rem;
+  font-weight: 300;
+  grid-column: 1 / -1;
 `;

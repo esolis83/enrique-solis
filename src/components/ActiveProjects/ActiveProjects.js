@@ -32,27 +32,50 @@ import {
   PaginationWrapper,
   PageButton,
   PageArrow,
-  PageInfo
+  PageInfo,
+  FilterBar,
+  FilterButton,
+  EmptyState
 } from './ActiveProjectsStyles';
 import { activeProjects } from '../../constants/activeProjectsData';
 import { codeExamples } from '../../constants/codeExamples';
 import AvatarModal from './AvatarModal';
+import SkillCyclerModal from './SkillCyclerModal';
 import ExternalLinkModal from './ExternalLinkModal';
 
 const PROJECTS_PER_PAGE = 4;
+
+const ALL_TAG = 'All';
 
 const ActiveProjects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [expandedCode, setExpandedCode] = useState(null);
   const [activeCodeTab, setActiveCodeTab] = useState({});
   const [showAvatarModal, setShowAvatarModal] = useState(false);
+  const [showCyclerModal, setShowCyclerModal] = useState(false);
   const [showExternalModal, setShowExternalModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [activeTag, setActiveTag] = useState(ALL_TAG);
   const containerRef = useRef(null);
 
-  const totalPages = Math.ceil(activeProjects.length / PROJECTS_PER_PAGE);
+  const allTags = [ALL_TAG, ...Array.from(new Set(activeProjects.flatMap(p => p.tags || [])))];
+
+  const filteredProjects = activeTag === ALL_TAG
+    ? activeProjects
+    : activeProjects.filter(p => (p.tags || []).includes(activeTag));
+
+  const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
   const pageStart = (currentPage - 1) * PROJECTS_PER_PAGE;
-  const visibleProjects = activeProjects.slice(pageStart, pageStart + PROJECTS_PER_PAGE);
+  const visibleProjects = filteredProjects.slice(pageStart, pageStart + PROJECTS_PER_PAGE);
+
+  const handleTagFilter = (tag) => {
+    if (tag === activeTag) return;
+    trackEvent('active_project_tag_filter', { tag });
+    setActiveTag(tag);
+    setCurrentPage(1);
+    setExpandedCode(null);
+    setActiveCodeTab({});
+  };
 
   const handlePageChange = (page) => {
     if (page === currentPage || page < 1 || page > totalPages) return;
@@ -93,6 +116,7 @@ const ActiveProjects = () => {
   return (
     <>
       <AvatarModal isOpen={ showAvatarModal } onClose={ () => setShowAvatarModal(false) } />
+      <SkillCyclerModal isOpen={ showCyclerModal } onClose={ () => setShowCyclerModal(false) } />
       <ExternalLinkModal
         isOpen={ showExternalModal }
         onClose={ () => setShowExternalModal(false) }
@@ -102,10 +126,25 @@ const ActiveProjects = () => {
       <ActiveProjectsContainer ref={ containerRef }>
         <PageTitle>Active Projects</PageTitle>
         <PageSubtitle>
-          Explore my current work in progress and completed projects. Each project showcases modern development practices, clean code, and innovative solutions.
+          A living collection of projects, snippets, and experiments — each built to sharpen a specific skill. Browse by tag to explore CSS tricks, JavaScript techniques, best practices, and the latest trends in modern web development.
         </PageSubtitle>
 
+        <FilterBar>
+          { allTags.map(tag => (
+            <FilterButton
+              key={ tag }
+              active={ activeTag === tag }
+              onClick={ () => handleTagFilter(tag) }
+            >
+              { tag }
+            </FilterButton>
+          )) }
+        </FilterBar>
+
         <ProjectsGrid>
+          { visibleProjects.length === 0 && (
+            <EmptyState>No projects match the selected tag.</EmptyState>
+          ) }
           { visibleProjects.map((project) => {
             const codeExample = codeExamples[project.codeExample];
             const currentTab = activeCodeTab[project.id] || 0;
@@ -124,7 +163,15 @@ const ActiveProjects = () => {
                     >
                       <div style={ { position: 'relative', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' } }>
                         <div style={ { fontSize: '3rem', marginBottom: '1rem' } }>✨</div>
-                        <DemoButton onClick={ () => { trackEvent('active_project_avatar_demo'); setShowAvatarModal(true); } }>
+                        <DemoButton onClick={ () => {
+                          if (project.demoType === 'cycler') {
+                            trackEvent('active_project_cycler_demo');
+                            setShowCyclerModal(true);
+                          } else {
+                            trackEvent('active_project_avatar_demo');
+                            setShowAvatarModal(true);
+                          }
+                        } }>
                           Click to See Animation
                         </DemoButton>
                       </div>
@@ -270,7 +317,7 @@ const ActiveProjects = () => {
             </PaginationWrapper>
 
             <PageInfo>
-              Showing { pageStart + 1 }–{ Math.min(pageStart + PROJECTS_PER_PAGE, activeProjects.length) } of { activeProjects.length } projects
+              Showing { pageStart + 1 }–{ Math.min(pageStart + PROJECTS_PER_PAGE, filteredProjects.length) } of { filteredProjects.length } project{ filteredProjects.length !== 1 ? 's' : '' }{ activeTag !== ALL_TAG ? ` tagged "${activeTag}"` : '' }
             </PageInfo>
           </>
         ) }
