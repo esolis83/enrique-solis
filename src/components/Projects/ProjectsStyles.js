@@ -109,8 +109,10 @@ export const TagList = styled.ul`
 display: flex;
 justify-content: space-evenly;
 padding: 2rem;
+flex-wrap: wrap;
 `
 export const Tag = styled.li`
 color: #000;
 font-size: 1.5rem;
+padding: 0.5rem 1rem;
 `

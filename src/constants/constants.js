@@ -1,5 +1,15 @@
 export const projects = [
   {
+    title: 'Frameshift',
+    description: "A headless WordPress + React TypeScript streaming platform showcasing full-stack architecture. Features a custom intro animation, dark glassmorphism UI, staggered Framer Motion animations, live WordPress REST API integration",
+    tags: ['React', 'TypeScript', 'WordPress', 'Framer Motion', 'TanStack Query', 'Vite', 'CSS Modules'],
+    image: '/images/frameshift-hero.webp',
+    source: 'https://github.com/esolis83/frameshift',
+    visit: 'https://frameshift.enriquesolis.me',
+    id: 0,
+    alt: 'Frameshift Project Image'
+  },
+  {
     title: 'GPT-3',
     description: "This demo site features a fully responsive design that adheres to modern UI/UX principles, developed using React. It guarantees a smooth interaction and an engaging experience for users on any device.",
     image: '/images/gpt3.webp',
