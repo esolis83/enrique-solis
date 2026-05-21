@@ -65,7 +65,7 @@ export const activeProjects = [
     ],
     externalLink: 'https://enrique-test-shop.myshopify.com/',
     disclaimer: 'This is a Shopify development store. A password is required to access this site.',
-    sitePassword: 'Testdev25'
+    sitePassword: 'Testdev26'
   },
   {
     id: 4,
