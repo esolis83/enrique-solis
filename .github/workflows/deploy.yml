@@ -42,4 +42,4 @@ jobs:
           FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
         run: |
           sudo apt-get install -y lftp
-          lftp -c "set ssl:verify-certificate no; open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER; mirror -R --parallel=5 --delete ./out/ $FTP_REMOTE_PATH"
+          lftp -c "set ssl:verify-certificate no; open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER; mirror -R --parallel=5 ./out/ $FTP_REMOTE_PATH"
