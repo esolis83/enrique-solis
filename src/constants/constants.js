@@ -10,13 +10,23 @@ export const projects = [
     alt: 'Frameshift Project Image'
   },
   {
+    title: 'Golden Hour',
+    description: 'A personal sunset photography gallery with ambient Spotify audio. Each photo card reveals a Dancing Script quote, sun-orange veil, and animated EQ bars on hover — with a PHP-proxied Spotify Client Credentials flow for in-page playback. Built with React, TypeScript, and Framer Motion.',
+    tags: ['React', 'TypeScript', 'Framer Motion', 'Spotify API', 'CSS Modules'],
+    image: '/images/golden-hour-hero.webp',
+    source: 'https://github.com/esolis83/golden-hour',
+    visit: 'https://golden-hour.enriquesolis.me/',
+    id: 1,
+    alt: 'Golden Hour Project Image'
+  },
+  {
     title: 'GPT-3',
     description: "This demo site features a fully responsive design that adheres to modern UI/UX principles, developed using React. It guarantees a smooth interaction and an engaging experience for users on any device.",
     image: '/images/gpt3.webp',
     tags: ['React', 'CSS', 'Node'],
     source: 'https://github.com/esolis83/gpt3',
     visit: 'https://gpt3-es.enriquesolis.me/',
-    id: 0,
+    id: 2,
     alt: 'GPT-3 Project Image'
   },
   {
@@ -26,7 +36,7 @@ export const projects = [
     tags: ['React', 'Next.js', 'Tailwind CSS'],
     source: 'https://github.com/esolis83/HooBank',
     visit: 'https://es-bank.enriquesolis.me/',
-    id: 1,
+    id: 3,
     alt: 'HooBank Project Image'
   },
   {
@@ -36,7 +46,7 @@ export const projects = [
     tags: ['React', 'CSS'],
     source: 'https://github.com/esolis83/gericht',
     visit: 'https://gericht-es.enriquesolis.me/',
-    id: 2,
+    id: 4,
     alt: 'Gericht Project Image'
   },
 

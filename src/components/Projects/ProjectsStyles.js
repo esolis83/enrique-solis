@@ -75,8 +75,10 @@ export const Intro = styled.div`
 export const CardInfo = styled.p`
   width: 100%;
   padding: 0 40px 30px;
+  height: 150px;
+  place-content: center;
   color: #8d8f91;
-  font-style: 2rem;
+  font-style: italic;
   line-height: 22px;
   word-spacing: 1px;
   @media ${(props) => props.theme.breakpoints.sm} {
