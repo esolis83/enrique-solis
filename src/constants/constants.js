@@ -20,13 +20,23 @@ export const projects = [
     alt: 'Golden Hour Project Image'
   },
   {
+    title: 'React Hooks Lab',
+    description: 'An interactive visual reference for all six core React hooks. Click a button, watch the relevant lines light up step by step — designed for visual learners. Covers useState, useEffect, useRef, useMemo, useContext, and useReducer with live demos, animated code traces, and a hook comparison guide.',
+    tags: ['React', 'TypeScript', 'Framer Motion', 'Vite', 'CSS Modules'],
+    image: '/images/hooks-lab-hero.webp',
+    source: 'https://github.com/esolis83/react-hooks-lab',
+    visit: 'https://hooks-lab.enriquesolis.me/',
+    id: 2,
+    alt: 'React Hooks Lab Project Image'
+  },
+  {
     title: 'GPT-3',
     description: "This demo site features a fully responsive design that adheres to modern UI/UX principles, developed using React. It guarantees a smooth interaction and an engaging experience for users on any device.",
     image: '/images/gpt3.webp',
     tags: ['React', 'CSS', 'Node'],
     source: 'https://github.com/esolis83/gpt3',
     visit: 'https://gpt3-es.enriquesolis.me/',
-    id: 2,
+    id: 3,
     alt: 'GPT-3 Project Image'
   },
   {
@@ -36,7 +46,7 @@ export const projects = [
     tags: ['React', 'Next.js', 'Tailwind CSS'],
     source: 'https://github.com/esolis83/HooBank',
     visit: 'https://es-bank.enriquesolis.me/',
-    id: 3,
+    id: 4,
     alt: 'HooBank Project Image'
   },
   {
@@ -46,7 +56,7 @@ export const projects = [
     tags: ['React', 'CSS'],
     source: 'https://github.com/esolis83/gericht',
     visit: 'https://gericht-es.enriquesolis.me/',
-    id: 4,
+    id: 5,
     alt: 'Gericht Project Image'
   },
 

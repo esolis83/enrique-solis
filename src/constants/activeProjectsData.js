@@ -48,6 +48,29 @@ export const activeProjects = [
   },
   {
     id: 3,
+    title: 'React Hooks Lab',
+    description: 'An interactive visual reference for all six core React hooks — click a button, watch the relevant lines light up in sequence. Covers useState, useEffect, useRef, useMemo, useContext, and useReducer with animated step-by-step code traces, live demos, and a side-by-side comparison guide for picking the right hook.',
+    heroImage: '/images/hooks-lab-hero.webp',
+    thumbnail: '/images/hooks-lab-hero.webp',
+    tags: ['React', 'TypeScript', 'Framer Motion', 'Vite', 'CSS Modules'],
+    technologies: ['React 18', 'TypeScript', 'Vite 5', 'Framer Motion', 'CSS Modules', 'HashRouter', 'GitHub Actions', 'Hostinger'],
+    status: 'Live Demo',
+    codeExample: null,
+    features: [
+      'Step-by-step animated code traces — lines highlight in sequence as you interact',
+      'Live demos for all 6 core hooks: useState, useEffect, useRef, useMemo, useContext, useReducer',
+      'useTracer custom hook drives all animation timing — reusable across every page',
+      'useContext page — ThemeContext Provider with 3 live consumers, no prop drilling',
+      'useReducer page — task list with ADD / TOGGLE / REMOVE / CLEAR_DONE actions',
+      'Hook Comparison page — side-by-side table + decision tree for all 6 hooks',
+      'ExplainGrid reusable component eliminates duplication across all hook pages',
+      'HashRouter for full static hosting compatibility',
+      'Auto-deploy via GitHub Actions + lftp to Hostinger on every push'
+    ],
+    externalLink: 'https://hooks-lab.enriquesolis.me/'
+  },
+  {
+    id: 4,
     title: 'Avatar Animation',
     description: 'An interactive scroll-triggered avatar animation featuring floating effects, responsive design, and smooth transitions. Built with React and Styled Components for a seamless user experience.',
     heroImage: '/images/avatar-one-hero.webp',
@@ -67,7 +90,7 @@ export const activeProjects = [
     demoType: 'avatar'
   },
   {
-    id: 4,
+    id: 5,
     title: 'Shopify E-Commerce Store',
     description: 'A fully functional Shopify e-commerce store featuring modern design, product catalog, shopping cart functionality, and seamless checkout process. Built with Shopify Liquid templates and custom theme development.',
     heroImage: '/images/shopify-ecommerce-hero.webp',
@@ -90,7 +113,7 @@ export const activeProjects = [
     sitePassword: 'Testdev26'
   },
   {
-    id: 5,
+    id: 6,
     title: 'Hidden Gems Travel Blog',
     description: 'A WordPress-powered travel blog showcasing unique and lesser-known destinations around the world. Features stunning photography, detailed travel guides, and insider tips for off-the-beaten-path adventures.',
     heroImage: '/images/wordpress-blog-hero.webp',
@@ -112,7 +135,7 @@ export const activeProjects = [
     disclaimer: 'This is a WordPress development site in developer mode. Work in progress.'
   },
   {
-    id: 6,
+    id: 7,
     title: 'Developer Portfolio',
     description: 'The portfolio site you are viewing right now — built with Next.js, React, and Styled Components. Features scroll-triggered animations, an interactive skills section with proficiency hover states, GA4 event tracking, and a paginated active projects showcase.',
     heroImage: '/images/portfolio-hero.webp',
@@ -132,7 +155,7 @@ export const activeProjects = [
     ]
   },
   {
-    id: 7,
+    id: 8,
     title: 'Skills Dashboard',
     description: 'An interactive skills showcase built for this portfolio\'s homepage — organized into four category cards with hover-reveal proficiency levels. Each skill tag fades its name out and slides a color-coded level badge in on hover, all driven by a CSS ::after pseudo-element and a single data-level attribute.',
     heroImage: '/images/skills-dashboard.webp',
@@ -152,7 +175,7 @@ export const activeProjects = [
     ]
   },
   {
-    id: 8,
+    id: 9,
     title: 'Skill Phrase Cycler',
     description: 'A lightweight React animation pattern used in the portfolio footer — a rotating phrase that fades out, swaps its text, then fades back in on a loop. Built with two useState values, a single useEffect interval, and one CSS opacity transition. No animation library needed.',
     heroImage: null,
