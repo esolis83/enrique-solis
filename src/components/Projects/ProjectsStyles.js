@@ -65,14 +65,14 @@ export const Hr = styled.hr`
 export const CardInfo = styled.p`
   width: 100%;
   padding: 0 40px 30px;
-  height: 150px;
-  place-content: center;
+  min-height: 150px;
   color: #8d8f91;
   font-style: italic;
   line-height: 22px;
   word-spacing: 1px;
   @media ${(props) => props.theme.breakpoints.sm} {
-    padding:15px;
+    padding: 15px;
+    min-height: unset;
 }
 `;
 
