@@ -1,4 +1,27 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const levelHoverStyles = css`
+  &:hover[data-level="Expert"] {
+    background: rgba(34, 197, 94, 0.14);
+    border-color: rgba(34, 197, 94, 0.55);
+    &::after { color: #22c55e; }
+  }
+  &:hover[data-level="Advanced"] {
+    background: rgba(191, 73, 86, 0.18);
+    border-color: rgba(191, 73, 86, 0.7);
+    &::after { color: #bf4956; }
+  }
+  &:hover[data-level="Intermediate"] {
+    background: rgba(245, 158, 11, 0.14);
+    border-color: rgba(245, 158, 11, 0.55);
+    &::after { color: #f59e0b; }
+  }
+  &:hover[data-level="Familiar"] {
+    background: rgba(141, 143, 145, 0.14);
+    border-color: rgba(141, 143, 145, 0.55);
+    &::after { color: #8d8f91; }
+  }
+`;
 
 export const SkillsGrid = styled.div`
   display: grid;
@@ -113,33 +136,7 @@ export const SkillTag = styled.span`
     }
   }
 
-  /* Expert — green */
-  &:hover[data-level="Expert"] {
-    background: rgba(34, 197, 94, 0.14);
-    border-color: rgba(34, 197, 94, 0.55);
-    &::after { color: #22c55e; }
-  }
-
-  /* Advanced — accent red */
-  &:hover[data-level="Advanced"] {
-    background: rgba(191, 73, 86, 0.18);
-    border-color: rgba(191, 73, 86, 0.7);
-    &::after { color: #bf4956; }
-  }
-
-  /* Intermediate — amber */
-  &:hover[data-level="Intermediate"] {
-    background: rgba(245, 158, 11, 0.14);
-    border-color: rgba(245, 158, 11, 0.55);
-    &::after { color: #f59e0b; }
-  }
-
-  /* Familiar — gray */
-  &:hover[data-level="Familiar"] {
-    background: rgba(141, 143, 145, 0.14);
-    border-color: rgba(141, 143, 145, 0.55);
-    &::after { color: #8d8f91; }
-  }
+  ${levelHoverStyles}
 
   @media ${props => props.theme.breakpoints.sm} {
     font-size: 11.5px;

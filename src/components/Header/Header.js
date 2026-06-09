@@ -14,7 +14,7 @@ const Header = () => {
     <HeaderContainer>
       <HeaderContent>
         <Link href="/" passHref legacyBehavior>
-          <a><Logo /></a>
+          <a onClick={ () => trackEvent('logo_click') }><Logo /></a>
         </Link>
         <Nav>
           <ul className="menu-main-nav">

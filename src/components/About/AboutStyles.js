@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { responsiveFlexColumn } from '../../styles/mixins';
 
 export const Section = styled.div`
   display: grid;
@@ -35,17 +36,9 @@ export const SectionText = styled.div`
 `
 export const LeftSection = styled.div`
   width: 100%;
+  ${responsiveFlexColumn}
   @media ${(props) => props.theme.breakpoints.sm} {
     width: 80%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-  @media ${(props) => props.theme.breakpoints.md} {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
   }
 `
 export const RightSection = styled.div`
@@ -54,17 +47,9 @@ export const RightSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${responsiveFlexColumn}
   @media ${(props) => props.theme.breakpoints.sm} {
     width: 80%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-  @media ${(props) => props.theme.breakpoints.md} {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
   }
 `
 export const AboutMePhoto = styled.div`

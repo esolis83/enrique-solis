@@ -1,16 +1,9 @@
 import { IoIosArrowDropdown } from 'react-icons/io';
 import styled from 'styled-components';
+import { fixedNavBase, accentHoverScale } from '../../styles/mixins';
 
 export const HeaderContainer = styled.div`
-  display: flex;
-  background-color: ${(props) => props.theme.colors.background2};
-  padding: 0 3.0303%;
-  position: fixed;
-  z-index: 9999;
-  width: 100%;
-  top: 0;
-  display: block;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,39%);
+  ${fixedNavBase}
   @media ${(props) => props.theme.breakpoints.sm} {
     display: none;
   }
@@ -124,46 +117,12 @@ export const NavLink = styled.a`
   }
 `;
 
-/// DropDown Contact
-export const ContactDropDown = styled.button`
-  border: none;
-  display: flex;
-  position: relative;
-  background: none;
-  font-size: 1.7rem;
-  line-height: 32px;
-  color: rgba(255, 255, 255, 0.75);
-  cursor: pointer;
-  transition: 0.3s ease;
-
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    color: #fff;
-  }
-
-  @media ${(props) => props.theme.breakpoints.sm} {
-    padding: 0.4rem 0;
-  }
-  @media ${(props) => props.theme.breakpoints.md} {
-    padding: 0;
-  }
-`;
 
 
 // Social Icons 
 
 export const SocialIcons = styled.a`
-transition: 0.3s ease;
-color: #8d8f91;
-border-radius: 50px;
-  padding: 8px;
-&:hover {
-    transform: scale(1.2);
-    cursor: pointer;
-    color: #c64958;
-  }
+  ${accentHoverScale}
 `
 
 

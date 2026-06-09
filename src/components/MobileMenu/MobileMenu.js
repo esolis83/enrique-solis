@@ -21,7 +21,7 @@ const MobileMenu = () => {
   return (
     <Menu>
       <Link href="/" passHref legacyBehavior>
-        <a><MobileLogo /></a>
+        <a onClick={ () => trackEvent('logo_click') }><MobileLogo /></a>
       </Link>
       <GiHamburgerMenu
         color="#fff"

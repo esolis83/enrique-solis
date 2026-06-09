@@ -8,20 +8,13 @@ const Avatar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-
-      if (scrollPercentage >= 22 && !isVisible) {
-        setIsVisible(true);
-      }
-
-      if (scrollPercentage < 22 && isVisible) {
-        setIsVisible(false);
-      }
+      const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      setIsVisible(pct >= 22);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isVisible]);
+  }, []);
 
   return (
     <AvatarContainer isVisible={ isVisible }>

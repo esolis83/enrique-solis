@@ -28,8 +28,8 @@ const Projects = () => (
               </TagList>
             </div>
             <UtilityList>
-              <li><ExternalLinks href={ visit } onClick={ () => trackEvent('project_link_click', { project_title: title, link_type: 'live' }) }>Live Site</ExternalLinks></li>
-              <li><ExternalLinks href={ source } onClick={ () => trackEvent('project_link_click', { project_title: title, link_type: 'source' }) }>Source</ExternalLinks></li>
+              <li><ExternalLinks href={ visit } onClick={ () => trackEvent('project_live_click', { project_name: title }) }>Live Site</ExternalLinks></li>
+              <li><ExternalLinks href={ source } onClick={ () => trackEvent('project_source_click', { project_name: title }) }>Source</ExternalLinks></li>
             </UtilityList>
           </BlogCard>
         );

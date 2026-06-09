@@ -19,6 +19,7 @@ import {
   FooterBottom
 } from './FooterStyles';
 import { trackEvent } from '../../utils/analytics';
+import { copyToClipboard } from '../../utils/clipboard';
 
 const EMAIL = 'e_solis83@yahoo.com';
 
@@ -30,6 +31,57 @@ const skillCycle = [
   'Shopify & WordPress',
   'Figma & Accessible UI',
 ];
+
+const ContactSection = ({ handleCopyEmail, copied }) => (
+  <ContactMethods>
+    <ContactRow>
+      <ContactIconWrap><MdPhone /></ContactIconWrap>
+      <ContactLink
+        href="tel:323-393-8751"
+        aria-label="Phone Number"
+        onClick={ () => trackEvent('contact_phone_click') }
+      >
+        (323) 393-8751
+      </ContactLink>
+    </ContactRow>
+    <ContactRow>
+      <ContactIconWrap><MdEmail /></ContactIconWrap>
+      <ContactLink
+        href={ `mailto:${EMAIL}` }
+        aria-label="Email Address"
+        onClick={ () => trackEvent('contact_email_click') }
+      >
+        { EMAIL }
+      </ContactLink>
+      <CopyButton type="button" onClick={ handleCopyEmail } aria-label="Copy email address">
+        { copied ? <><FiCheck /> Copied!</> : <><FiCopy /> Copy</> }
+      </CopyButton>
+    </ContactRow>
+  </ContactMethods>
+);
+
+const SocialLinks = () => (
+  <SocialRow>
+    <SocialButton
+      href="https://www.linkedin.com/in/enriquesolis/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn Profile"
+      onClick={ () => trackEvent('contact_linkedin_click') }
+    >
+      <AiFillLinkedin size="1.2rem" /> LinkedIn
+    </SocialButton>
+    <SocialButton
+      href="https://github.com/esolis83"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub Profile"
+      onClick={ () => trackEvent('contact_github_click') }
+    >
+      <AiFillGithub size="1.2rem" /> GitHub
+    </SocialButton>
+  </SocialRow>
+);
 
 const Footer = () => {
   const [copied, setCopied] = useState(false);
@@ -48,33 +100,10 @@ const Footer = () => {
   }, []);
 
   const handleCopyEmail = async () => {
-    let success = false;
-
-    // Strategy 1: modern clipboard API (HTTPS / secure context)
-    if (navigator.clipboard && window.isSecureContext) {
-      try {
-        await navigator.clipboard.writeText(EMAIL);
-        success = true;
-      } catch (_) { /* fall through */ }
-    }
-
-    // Strategy 2: execCommand fallback (HTTP / localhost / older browsers)
-    if (!success) {
-      try {
-        const el = document.createElement('textarea');
-        el.value = EMAIL;
-        el.setAttribute('readonly', '');
-        el.style.cssText = 'position:absolute;left:-9999px;top:-9999px;';
-        document.body.appendChild(el);
-        el.select();
-        success = document.execCommand('copy');
-        document.body.removeChild(el);
-      } catch (_) { /* truly failed */ }
-    }
-
+    const success = await copyToClipboard(EMAIL);
     if (success) {
       setCopied(true);
-      trackEvent('contact_click', { method: 'email_copy' });
+      trackEvent('contact_email_copy');
       setTimeout(() => setCopied(false), 2000);
     }
   };
@@ -86,59 +115,12 @@ const Footer = () => {
           Currently working with:&nbsp;
           <SkillPhrase visible={ phraseVisible }>{ skillCycle[skillIndex] }</SkillPhrase>
         </SkillCyclerWrap>
-
         <ContactHeadline>Let's Build Something Great!!</ContactHeadline>
         <ContactSubtext>
           Have a project in mind or just want to connect? I usually respond within 24 hours.
         </ContactSubtext>
-
-        <ContactMethods>
-          <ContactRow>
-            <ContactIconWrap><MdPhone /></ContactIconWrap>
-            <ContactLink
-              href="tel:323-393-8751"
-              aria-label="Phone Number"
-              onClick={ () => trackEvent('contact_click', { method: 'phone' }) }
-            >
-              (323) 393-8751
-            </ContactLink>
-          </ContactRow>
-          <ContactRow>
-            <ContactIconWrap><MdEmail /></ContactIconWrap>
-            <ContactLink
-              href={ `mailto:${EMAIL}` }
-              aria-label="Email Address"
-              onClick={ () => trackEvent('contact_click', { method: 'email' }) }
-            >
-              { EMAIL }
-            </ContactLink>
-            <CopyButton type="button" onClick={ handleCopyEmail } aria-label="Copy email address">
-              { copied ? <><FiCheck /> Copied!</> : <><FiCopy /> Copy</> }
-            </CopyButton>
-          </ContactRow>
-        </ContactMethods>
-
-        <SocialRow>
-          <SocialButton
-            href="https://www.linkedin.com/in/enriquesolis/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn Profile"
-            onClick={ () => trackEvent('social_click', { platform: 'linkedin', location: 'footer' }) }
-          >
-            <AiFillLinkedin size="1.2rem" /> LinkedIn
-          </SocialButton>
-          <SocialButton
-            href="https://github.com/esolis83"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Profile"
-            onClick={ () => trackEvent('social_click', { platform: 'github', location: 'footer' }) }
-          >
-            <AiFillGithub size="1.2rem" /> GitHub
-          </SocialButton>
-        </SocialRow>
-
+        <ContactSection handleCopyEmail={ handleCopyEmail } copied={ copied } />
+        <SocialLinks />
         <FooterBottom>
           © { new Date().getFullYear() } Enrique Solis — Frontend Engineer
         </FooterBottom>

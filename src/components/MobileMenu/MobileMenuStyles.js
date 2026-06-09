@@ -1,14 +1,8 @@
 import styled from 'styled-components';
+import { fixedNavBase } from '../../styles/mixins';
 
 export const Menu = styled.div`
-  background-color: ${(props) => props.theme.colors.background2};
-  padding: 0 3.0303%;
-  position: fixed;
-  z-index: 9999;
-  width: 100%;
-  top: 0;
-  display: block;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,39%);
+  ${fixedNavBase}
   padding: 0;
   display: none;
   @media ${(props) => props.theme.breakpoints.sm} {

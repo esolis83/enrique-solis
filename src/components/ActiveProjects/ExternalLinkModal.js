@@ -49,6 +49,7 @@ const PasswordBadge = styled.span`
   border-radius: 4px;
 `;
 
+// fallow-ignore-next-line complexity
 const ExternalLinkModal = ({ isOpen, onClose, project }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 

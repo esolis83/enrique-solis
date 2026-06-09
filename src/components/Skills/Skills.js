@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FaCode, FaServer, FaBrain, FaPalette } from 'react-icons/fa';
+import { trackEvent } from '../../utils/analytics';
 import { Section, SectionDivider, SectionTitle, SectionText } from '../../styles/GlobalComponents';
 import {
   SkillsGrid, SkillCard, CardHeader, CardIcon, CardTitle,
@@ -71,7 +72,17 @@ const levels = [
   { label: 'Familiar', color: '#8d8f91' },
 ];
 
-const Skills = () => (
+const Skills = () => {
+  const hoveredSkills = useRef(new Set());
+
+  const handleSkillHover = (name) => {
+    if (!hoveredSkills.current.has(name)) {
+      hoveredSkills.current.add(name);
+      trackEvent('skill_hover', { skill_name: name });
+    }
+  };
+
+  return (
   <Section id="tech">
     <SectionDivider />
     <SectionTitle main>Skills & Tech</SectionTitle>
@@ -98,13 +109,14 @@ const Skills = () => (
           </CardHeader>
           <TagGrid>
             { skills.map(({ name, level }) => (
-              <SkillTag key={ name } data-level={ level }>{ name }</SkillTag>
+              <SkillTag key={ name } data-level={ level } onMouseEnter={ () => handleSkillHover(name) }>{ name }</SkillTag>
             )) }
           </TagGrid>
         </SkillCard>
       )) }
     </SkillsGrid>
   </Section>
-);
+  );
+};
 
 export default Skills;

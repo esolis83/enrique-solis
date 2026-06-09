@@ -5,8 +5,10 @@ import Projects from '../components/Projects/Projects';
 import Skills from '../components/Skills/Skills';
 import { Layout } from '../layout/Layout';
 import { Section } from '../styles/GlobalComponents';
+import { usePageTracking } from '../hooks/usePageTracking';
 
 const Home = () => {
+  usePageTracking();
   return (
     <Layout>
       <Section grid>

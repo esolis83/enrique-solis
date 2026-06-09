@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { accentHoverColor } from '../../styles/mixins';
 
 export const FooterWrapper = styled.section`
   position: relative;
@@ -111,12 +112,8 @@ export const ContactLink = styled.a`
   color: ${props => props.theme.colors.background2};
   font-size: 17px;
   font-weight: 500;
-  transition: color 0.2s ease;
   text-decoration: none;
-
-  &:hover {
-    color: ${props => props.theme.colors.primary1};
-  }
+  ${accentHoverColor}
 
   @media ${props => props.theme.breakpoints.sm} {
     font-size: 15px;
